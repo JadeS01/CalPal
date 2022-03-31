@@ -16,10 +16,12 @@ struct ProfileView: View {
                 .foregroundColor(.green)
                 .imageScale(.large).padding()
             Text("Set your daily calorie goal\n\n")
-            TextField("####", value: $calories, format: .number)
-                .textFieldStyle(.roundedBorder)
-                .keyboardType(.decimalPad)
-                .padding()
+            Form {
+                TextField("####", value: $calories, format: .number)
+                    .textFieldStyle(.roundedBorder)
+                    .keyboardType(.decimalPad)
+                    .padding()
+            }
             Text("Goal: \(calories) calories")
             if calories < 1200 {
                 Text("\n*Please take caution with your health.")
@@ -27,7 +29,7 @@ struct ProfileView: View {
             else if calories > 5000 {
                 Text("\n*Please take caution with your health.")
             }
-        }
+        }.navigationTitle("Profile")
     }
 }
 
