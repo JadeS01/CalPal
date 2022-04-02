@@ -59,7 +59,9 @@ struct HomeViewController: View {
 }
 
 struct MainView: View {
-    
+    /** TODO: Create a function that subtracts the day's total calories from the goal calories and
+            display whether user has yet to meet their goal or has gone over it. LogView has the
+            function showing the day's total calories*/
     @Binding var showMenu: Bool
     
     var body: some View {
@@ -70,8 +72,13 @@ struct MainView: View {
 //        }) {
 //            Text("Show menu")
 //        }
-        Text("This is the home view!")
+        VStack(alignment: .center){
+            Text(greeting())
+            Text("This is the home view!")
+            
+        }
     }
+    
 }
 
 struct HomeViewController_Previews: PreviewProvider {

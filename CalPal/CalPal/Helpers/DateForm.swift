@@ -20,3 +20,25 @@ func calcDate(date: Date) -> String {
         return "\(days) day(s) ago"
     }
 }
+
+func greeting() -> String{
+    var greeting = ""
+    let date = NSDate()
+    let calendar = NSCalendar.current
+    let currentHour = calendar.component(.hour, from: date as Date)
+    let hourInt = Int(currentHour.description)!
+    
+    if hourInt >= 12 && hourInt <= 16 {
+        greeting = "Good Afternoon"
+    }
+    else if hourInt >= 3 && hourInt <= 12 {
+        greeting = "Good Morning"
+    }
+    else if hourInt >= 16 && hourInt <= 20 {
+        greeting = "Good Evening"
+    }
+    else if hourInt >= 20 && hourInt <= 3 {
+        greeting = "Good Night"
+    }
+    return greeting
+}

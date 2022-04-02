@@ -5,62 +5,90 @@
 //  Created by Jade Simien on 3/31/22.
 //
 
+// reference https://www.youtube.com/watch?v=O0FSDNOXCl0
 import SwiftUI
+import CoreData
 
 struct LogView: View {
-    @Environment (\.managedObjectContext) var managedObjectContext
-    @Environment (\.dismiss) var dismiss
+    /** TODO: Edit fetch request to only display the current day's log AND
+            fix edit/EditView.*/
+    @Environment(\.managedObjectContext) var managedObjectContext
+    // gets the most recent dates
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
     
-    @State private var name = ""
-    @State private var calories = 0
-    @State private var category = ""
-    private var categories = ["snack", "breakfast", "lunch", "dinner"]
+    @State private var showAddView = false
     
     var body: some View {
-        Form{
-            Section{
-                /** TODO: Fetch calories from API*/
-                // temporary food log form
-                TextField("Name", text: $name)
-                
-                TextField("Calories", value: $calories, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.decimalPad)
-                    .padding()
-                Text("\(calories) calories")
-                
-                // reference: https://medium.com/geekculture/custom-drop-down-text-field-in-swiftui-a748d2cebbeb
-                Menu{
-                    ForEach(categories, id: \.self) { obj in
-                        Button(obj) {
-                            self.category = obj
-                        }
-                    }
-                } label: {
-                    VStack(spacing: 5){
-                        HStack{
-                            Text(category.isEmpty ? "Select category" : category)
-                                .foregroundColor(category.isEmpty ? .gray : .black)
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .foregroundColor(Color.green)
-                                .font(Font.system(size: 20, weight: .bold))
+        NavigationView{
+            VStack(alignment: .leading){
+                Text("\(Int(todayCalories())) total calorie(s) today")
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+                List{
+                    ForEach(food) { food in
+                        NavigationLink(destination: Text("\(food.calories)")){
+                            HStack {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(food.name!)
+                                        .bold()
+                                    Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
+                                }
+                                Spacer()
+                                Text(calcDate(date:food.date!))
+                                    .foregroundColor(.gray).italic()
                             }
-                            .padding(.horizontal)
+                        }
+//                        NavigationLink(destination: EditView(food: food)){
+//                            HStack {
+//                                VStack(alignment: .leading, spacing: 6) {
+//                                    Text(food.name!)
+//                                        .bold()
+//                                    Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
+//                                }
+//                                Spacer()
+//                                Text(calcDate(date:food.date!))
+//                                    .foregroundColor(.gray).italic()
+//                            }
+//                        }
                     }
+                    .onDelete(perform: deleteFood)
                 }
-                
-                HStack {
-                    Spacer()
-                    Button("Add Food"){
-                        DataController().addFood(name: name, calories: calories, category: category, context: managedObjectContext)
-                        dismiss()
-                    }
-                    Spacer()
-                    
-                }
+                .listStyle(.plain)
             }
-        }.navigationTitle("Calorie Log")
+        }.navigationTitle("Today's Log")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showAddView.toggle()
+                    } label: {
+                        Label("Add Food", systemImage: "plus.circle").foregroundColor(.green)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading){
+                    EditButton()
+            }
+        }
+        .sheet(isPresented: $showAddView){
+            AddView()
+        }
+    }
+    
+    private func deleteFood(offsets: IndexSet) {
+        withAnimation {
+            offsets.map {food[$0]}.forEach(managedObjectContext.delete)
+            
+            DataController().save(context: managedObjectContext)
+        }
+    }
+    
+    private func todayCalories() -> Int32 {
+        var todayCalories: Int32 = 0
+        for item in food {
+            if Calendar.current.isDateInToday(item.date!){
+                todayCalories += item.calories
+            }
+        }
+        return todayCalories
     }
 }
 

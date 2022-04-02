@@ -19,6 +19,7 @@
 		D0B2596227F637A400026898 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596127F637A400026898 /* DataController.swift */; };
 		D0B2596627F656C800026898 /* DateForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596527F656C800026898 /* DateForm.swift */; };
 		D0B2596A27F6644900026898 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596927F6644900026898 /* EditView.swift */; };
+		D0B2596C27F8C7D800026898 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596B27F8C7D800026898 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		D0B2596127F637A400026898 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D0B2596527F656C800026898 /* DateForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateForm.swift; sourceTree = "<group>"; };
 		D0B2596927F6644900026898 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		D0B2596B27F8C7D800026898 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				D049CE1827F622DB0080E226 /* HomeViewController.swift */,
 				D049CE1A27F623010080E226 /* MenuView.swift */,
 				D049CE1E27F623390080E226 /* LogView.swift */,
+				D0B2596B27F8C7D800026898 /* AddView.swift */,
 				D049CE2027F623520080E226 /* ProfileView.swift */,
 				D049CE2227F623730080E226 /* StatsView.swift */,
 				D0B2596927F6644900026898 /* EditView.swift */,
@@ -191,6 +194,7 @@
 				D049CE0B27F622500080E226 /* CalPalApp.swift in Sources */,
 				D049CE1F27F623390080E226 /* LogView.swift in Sources */,
 				D049CE2127F623520080E226 /* ProfileView.swift in Sources */,
+				D0B2596C27F8C7D800026898 /* AddView.swift in Sources */,
 				D0B2596A27F6644900026898 /* EditView.swift in Sources */,
 				D0B2596227F637A400026898 /* DataController.swift in Sources */,
 				D049CE2327F623730080E226 /* StatsView.swift in Sources */,

@@ -10,7 +10,6 @@ import CoreData
 
 class DataController: ObservableObject {
     let container = NSPersistentContainer(name: "FoodModel")
-    
     init() { // load data
         container.loadPersistentStores{ desc, error in
             if let error = error {
@@ -28,6 +27,7 @@ class DataController: ObservableObject {
             print("Did not save data")
         }
     }
+    
     
     func addFood(name: String, calories: Int, category: String, context: NSManagedObjectContext){
         let food = Food(context: context)

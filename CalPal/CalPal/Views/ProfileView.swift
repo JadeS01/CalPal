@@ -8,28 +8,48 @@
 import SwiftUI
 
 struct ProfileView: View {
-    // figure out how to always store
-    @State private var calories = 1200
+    @State private var goalCal = 0
+    private let defaults = UserDefaults.standard
     var body: some View {
         VStack(alignment: .center){
+            Text("Current Goal: \(goalCal) calories").font(.headline)
             Image(systemName: "person")
                 .foregroundColor(.green)
                 .imageScale(.large).padding()
             Text("Set your daily calorie goal\n\n")
-            Form {
-                TextField("####", value: $calories, format: .number)
+            VStack{
+                TextField("####", value: $goalCal, format: .number)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
                     .padding()
             }
-            Text("Goal: \(calories) calories")
-            if calories < 1200 {
+            HStack {
+                Spacer()
+                Button("Confirm"){
+//                    DataController().addGoal(goalCal: goalCal, context: managedObjectContext)
+                    self.save()
+                    self.load()
+                }
+                Spacer()
+                
+            }
+            if goalCal < 1200 {
                 Text("\n*Please take caution with your health.")
             }
-            else if calories > 5000 {
+            else if goalCal > 5000 {
                 Text("\n*Please take caution with your health.")
             }
         }.navigationTitle("Profile")
+            .onAppear(perform: load)
+    }
+    
+    func save() {
+        defaults.set(goalCal, forKey: "goalCal")
+    }
+    
+    func load() {
+        let savedGoal = defaults.integer(forKey: "goalCal")
+        goalCal = savedGoal ?? 0
     }
 }
 
