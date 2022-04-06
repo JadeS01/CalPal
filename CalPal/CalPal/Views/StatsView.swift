@@ -9,17 +9,21 @@ import SwiftUI
 import CoreData
 
 struct StatsView: View {
-    
+ 
     var body: some View {
         Text("stats view")
+        
+        
         /** TODO: Allow options to display different statistics
                 ex1: pie chart of categories
                 ex2: histogram of week's categories
                 ex3: histogram of hourly/day categories
          LogView demonstrates fetching data from db*/
+ 
     }
-}
 
+ 
+}
 
 struct StatsView_Previews: PreviewProvider {
     static var previews: some View {

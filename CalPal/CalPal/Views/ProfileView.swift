@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var goalCal = 0
+    //making observed object in order for us to set globalVariable further
+    @ObservedObject var globalObject=GoalCalory.global
     private let defaults = UserDefaults.standard
     var body: some View {
         VStack(alignment: .center){
@@ -27,6 +29,11 @@ struct ProfileView: View {
                 Spacer()
                 Button("Confirm"){
 //                    DataController().addGoal(goalCal: goalCal, context: managedObjectContext)
+                    
+                    globalObject.goalCal=goalCal
+                    //Debugging setting goalCal to Global Object
+                    print(GoalCalory.global.goalCal)
+                    PrintApiTest()
                     self.save()
                     self.load()
                 }
@@ -46,15 +53,22 @@ struct ProfileView: View {
     func save() {
         defaults.set(goalCal, forKey: "goalCal")
     }
+    func PrintApiTest(){
+        var response : [Response] = []
+        var _ : String
+        ApiCalorieNinja().LoadDataApi(searchQuery: "10 oz Onion and tomato"){ (dataResponse) in
+             response = [dataResponse]
+    }
+}
     
     func load() {
         let savedGoal = defaults.integer(forKey: "goalCal")
-        goalCal = savedGoal ?? 0
+        goalCal = savedGoal
     }
-}
+   
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
-    }
+    }}
 }

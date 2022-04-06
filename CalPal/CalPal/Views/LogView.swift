@@ -11,7 +11,7 @@ import CoreData
 
 struct LogView: View {
     /** TODO: Edit fetch request to only display the current day's log AND
-            fix edit/EditView.*/
+        fix edit/EditView.*/
     @Environment(\.managedObjectContext) var managedObjectContext
     // gets the most recent dates
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
