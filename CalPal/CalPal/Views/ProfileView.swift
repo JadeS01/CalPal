@@ -33,7 +33,8 @@ struct ProfileView: View {
                     globalObject.goalCal=goalCal
                     //Debugging setting goalCal to Global Object
                     print(GoalCalory.global.goalCal)
-                    PrintApiTest()
+                    //TestApiCall
+                    //PrintApiTest()
                     self.save()
                     self.load()
                 }

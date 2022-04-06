@@ -55,6 +55,8 @@ class ApiCalorieNinja{
                 DispatchQueue.main.async {
                                         isCompleted(responseData)
                                         print("Api Call returned" + "\(responseData)"  )
+                    GoalCalory.global.TotalFoodCalorie = responseData.items.map{$0.calories}.reduce(0,+)
+                    
                                     }
             }
             threadFetch.resume()
