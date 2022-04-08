@@ -25,7 +25,7 @@ struct LogView: View {
                     .foregroundColor(.gray)
                     .padding(.horizontal)
                 List{
-                    ForEach(food) { food in
+                    ForEach(todayFood()) { food in
                         NavigationLink(destination: Text("\(food.calories)")){
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
@@ -34,8 +34,11 @@ struct LogView: View {
                                     Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
                                 }
                                 Spacer()
-                                Text(calcDate(date:food.date!))
-                                    .foregroundColor(.gray).italic()
+                                VStack(alignment: .leading, spacing: 6) {
+                                    Text(food.category!)
+                                    Text(calcDate(date:food.date!))
+                                        .foregroundColor(.gray).italic()
+                                }
                             }
                         }
 //                        NavigationLink(destination: EditView(food: food)){
@@ -71,6 +74,16 @@ struct LogView: View {
         .sheet(isPresented: $showAddView){
             AddView()
         }
+    }
+    
+    private func todayFood() -> [Food] {
+        var todayFood: [Food] = []
+        for item in food {
+            if Calendar.current.isDateInToday(item.date!){
+                todayFood.append(item)
+            }
+        }
+        return todayFood
     }
     
     private func deleteFood(offsets: IndexSet) {
