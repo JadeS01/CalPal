@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9694DBC927FD440400A79E23 /* GoalCalory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694DBC827FD440400A79E23 /* GoalCalory.swift */; };
 		9694DBCB27FD4D1000A79E23 /* CalorieNinjasApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694DBCA27FD4D1000A79E23 /* CalorieNinjasApi.swift */; };
+		D00463E727FFDCDE00CD944B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = D00463E627FFDCDE00CD944B /* SwiftUICharts */; };
 		D049CE0B27F622500080E226 /* CalPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049CE0A27F622500080E226 /* CalPalApp.swift */; };
 		D049CE0F27F622510080E226 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D049CE0E27F622510080E226 /* Assets.xcassets */; };
 		D049CE1227F622510080E226 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D049CE1127F622510080E226 /* Preview Assets.xcassets */; };
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D00463E727FFDCDE00CD944B /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +142,9 @@
 			dependencies = (
 			);
 			name = CalPal;
+			packageProductDependencies = (
+				D00463E627FFDCDE00CD944B /* SwiftUICharts */,
+			);
 			productName = CalPal;
 			productReference = D049CE0727F622500080E226 /* CalPal.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +173,9 @@
 				Base,
 			);
 			mainGroup = D049CDFE27F622500080E226;
+			packageReferences = (
+				D00463E527FFDCDE00CD944B /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = D049CE0827F622500080E226 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -407,6 +415,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D00463E527FFDCDE00CD944B /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D00463E627FFDCDE00CD944B /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D00463E527FFDCDE00CD944B /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		D0B2595E27F6314A00026898 /* FoodModel.xcdatamodeld */ = {
