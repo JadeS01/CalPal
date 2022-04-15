@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 func calcDate(date: Date) -> String {
     let minutes = Int(-date.timeIntervalSinceNow)/60
@@ -41,4 +42,42 @@ func greeting() -> String{
         greeting = "Good Night"
     }
     return greeting
+}
+
+
+ 
+extension Calendar {
+    static let iso8601 = Calendar(identifier: .iso8601)
+    static let gregorian = Calendar(identifier: .gregorian)
+}
+
+extension Date {
+    func byAdding(component: Calendar.Component, value: Int, wrappingComponents: Bool = false, using calendar: Calendar = .current) -> Date? {
+        calendar.date(byAdding: component, value: value, to: self, wrappingComponents: wrappingComponents)
+    }
+    func dateComponents(_ components: Set<Calendar.Component>, using calendar: Calendar = .current) -> DateComponents {
+        calendar.dateComponents(components, from: self)
+    }
+    func startOfWeek(using calendar: Calendar = .current) -> Date {
+        calendar.date(from: dateComponents([.yearForWeekOfYear, .weekOfYear], using: calendar))!
+    }
+    var noon: Date {
+        Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    func daysOfWeek(using calendar: Calendar = .current) -> [Date] {
+        let startOfWeek = self.startOfWeek(using: calendar).noon
+        return (0...6).map { startOfWeek.byAdding(component: .day, value: $0, using: calendar)! }
+    }
+}
+
+func waterReminder() {
+    let content = UNMutableNotificationContent()
+    content.title = "Drink some water!"
+    content.subtitle = "Please :D"
+    content.sound = UNNotificationSound.default
+    
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: true)
+    let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+    
+    UNUserNotificationCenter.current().add(request)
 }

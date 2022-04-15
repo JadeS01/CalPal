@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @Environment (\.managedObjectContext) var managedObjectContext2
+    @Environment (\.dismiss) var dismiss
     @State private var goalCal = 0
     //making observed object in order for us to set globalVariable further
     @ObservedObject var globalObject=GoalCalory.global
     private let defaults = UserDefaults.standard
+    
     var body: some View {
         VStack(alignment: .center){
             Text("Current Goal: \(goalCal) calories").font(.headline)
-            Image(systemName: "person")
+            Image(systemName: "person") 
                 .foregroundColor(.green)
                 .imageScale(.large).padding()
             Text("Set your daily calorie goal\n\n")
@@ -28,13 +31,8 @@ struct ProfileView: View {
             HStack {
                 Spacer()
                 Button("Confirm"){
-//                    DataController().addGoal(goalCal: goalCal, context: managedObjectContext)
-                    
-                    globalObject.goalCal=goalCal
-                    //Debugging setting goalCal to Global Object
+                    DataController2().addGoal(goalCal: goalCal, context: managedObjectContext2)
                     print(GoalCalory.global.goalCal)
-                    //TestApiCall
-                    //PrintApiTest()
                     self.save()
                     self.load()
                 }
@@ -54,13 +52,6 @@ struct ProfileView: View {
     func save() {
         defaults.set(goalCal, forKey: "goalCal")
     }
-    func PrintApiTest(){
-        var response : [Response] = []
-        var _ : String
-        ApiCalorieNinja().LoadDataApi(searchQuery: "10 oz Onion and tomato"){ (dataResponse) in
-             response = [dataResponse]
-    }
-}
     
     func load() {
         let savedGoal = defaults.integer(forKey: "goalCal")
@@ -73,3 +64,4 @@ struct ProfileView_Previews: PreviewProvider {
         ProfileView()
     }}
 }
+

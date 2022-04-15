@@ -7,8 +7,15 @@
 
 import SwiftUI
 import CoreData
+import SwiftUICharts
 
 struct StatsView: View {
+    
+    @Environment(\.managedObjectContext) var managedObjectContext
+    // gets the most recent dates
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
+    
+
  
     var body: some View {
         /** TODO: Allow options to display different statistics
@@ -16,8 +23,13 @@ struct StatsView: View {
                 ex2: histogram of week's categories
                 ex3: histogram of hourly/day categories
          LogView demonstrates fetching data from db*/
-        VStack(alignment: .center){
+        VStack{
+              
             Text("Stats")
+            Section(header: Text("Bar Chart")){
+            }
+            
+            
         }.navigationTitle("Statistics")
  
     }

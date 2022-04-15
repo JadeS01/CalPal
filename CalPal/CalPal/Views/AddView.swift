@@ -15,6 +15,7 @@ struct AddView: View {
     @State private var calories = 0
     @State private var category = ""
     private var categories = ["snack", "breakfast", "lunch", "dinner"]
+  
     
     var body: some View {
         Form{
@@ -23,11 +24,12 @@ struct AddView: View {
                 // temporary food log form
                 TextField("Name", text: $name)
                 
-                TextField("Calories", value: $calories, format: .number)
-                    .textFieldStyle(.roundedBorder)
-                    .keyboardType(.decimalPad)
-                    .padding()
-                Text("\(calories) calories")
+//                TextField("Calories", value: $calories, format: .number)
+//                    .textFieldStyle(.roundedBorder)
+//                    .keyboardType(.decimalPad)
+//                    .padding()
+//                Text("\(calories) calories")
+//
                 
                 // reference: https://medium.com/geekculture/custom-drop-down-text-field-in-swiftui-a748d2cebbeb
                 Menu{
@@ -53,6 +55,9 @@ struct AddView: View {
                 HStack {
                     Spacer()
                     Button("Add Food"){
+                        //TestApiCall
+                        PrintApiTest(searchQuery: name)
+                        
                         DataController().addFood(name: name, calories: calories, category: category, context: managedObjectContext)
                         dismiss()
                     }
@@ -61,6 +66,13 @@ struct AddView: View {
                 }
             }
         }.navigationTitle("Calorie Log")
+    }
+    func PrintApiTest(searchQuery: String){
+        var response : [Response] = []
+        var _ : String
+        ApiCalorieNinja().LoadDataApi(searchQuery: searchQuery){ (dataResponse) in
+            response = [dataResponse] 
+        }
     }
 }
 

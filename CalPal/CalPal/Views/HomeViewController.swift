@@ -10,8 +10,8 @@ import SwiftUI
 struct HomeViewController: View {
     
     @State var showMenu = false
-    
-    
+
+
     var body: some View {
         
         let closeMenu = DragGesture()
@@ -63,22 +63,47 @@ struct MainView: View {
             display whether user has yet to meet their goal or has gone over it. LogView has the
             function showing the day's total calories*/
     @Binding var showMenu: Bool
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
     
+    @State var isRemOn: Bool = false
+    
+
     var body: some View {
-//        Button(action: {
-//            withAnimation {
-//                self.showMenu = true
-//            }
-//        }) {
-//            Text("Show menu")
-//        }
         VStack(alignment: .center){
             Text(greeting())
             Text("This is the home view!")
+            Text("Today's Calories: \(todayCalories())")
+           
+            Spacer()
+            Button("Water reminder"){
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                    if success {
+                        print("k")
+                    } else if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+            Button("hi"){
+                waterReminder()
+            }
             
+            Toggle(isOn: $isRemOn){
+                Text("water")
+            }
         }
     }
     
+    private func todayCalories() -> Int32 {
+        var todayCalories: Int32 = 0
+        for item in food {
+            if Calendar.current.isDateInToday(item.date!){
+                todayCalories += item.calories
+            }
+        }
+        return todayCalories
+    }
 }
 
 struct HomeViewController_Previews: PreviewProvider {
