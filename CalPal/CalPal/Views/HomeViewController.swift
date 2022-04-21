@@ -99,7 +99,7 @@ struct MainView: View {
         var todayCalories: Int32 = 0
         for item in food {
             if Calendar.current.isDateInToday(item.date!){
-                todayCalories += item.calories
+                todayCalories += Int32(item.calories)
             }
         }
         return todayCalories

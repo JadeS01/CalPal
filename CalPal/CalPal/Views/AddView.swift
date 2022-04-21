@@ -12,7 +12,9 @@ struct AddView: View {
     @Environment (\.dismiss) var dismiss
     
     @State private var name = ""
-    @State private var calories = 0
+    //
+    @State private var calories = 0.0
+    
     @State private var category = ""
     private var categories = ["snack", "breakfast", "lunch", "dinner"]
   
@@ -56,9 +58,14 @@ struct AddView: View {
                     Spacer()
                     Button("Add Food"){
                         //TestApiCall
-                        PrintApiTest(searchQuery: name)
+            
+                        var response : [ApiNinja.Response] = []
+                        var _ : String
+                        ApiCalorieNinja().LoadDataApi(searchQuery: name){ (dataResponse) in
+                            response = [dataResponse]
+                            calories = dataResponse.items.map{$0.calories}.reduce(0,+)
                         
-                        DataController().addFood(name: name, calories: calories, category: category, context: managedObjectContext)
+                            DataController().addFood(name: name, calories:     Double(Int(calories)), category: category, context: managedObjectContext)
                         dismiss()
                     }
                     Spacer()
@@ -67,12 +74,7 @@ struct AddView: View {
             }
         }.navigationTitle("Calorie Log")
     }
-    func PrintApiTest(searchQuery: String){
-        var response : [Response] = []
-        var _ : String
-        ApiCalorieNinja().LoadDataApi(searchQuery: searchQuery){ (dataResponse) in
-            response = [dataResponse] 
-        }
+    
     }
 }
 

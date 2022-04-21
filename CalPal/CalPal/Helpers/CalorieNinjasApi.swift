@@ -7,6 +7,7 @@
 
 import Foundation
 //app.quicktype.io <= gives a class from json response
+class ApiNinja{
 struct Response: Codable {
     let items: [Item]
 }
@@ -35,10 +36,10 @@ struct Item: Codable {
         case carbohydratesTotalG = "carbohydrates_total_g"
     }
 }
-
+}
 class ApiCalorieNinja{
     //rewrote a function from calorieninja.com/api made it a function passing a string
-    func LoadDataApi(searchQuery: String, isCompleted: @escaping (Response) -> ()){
+    func LoadDataApi(searchQuery: String, isCompleted: @escaping (ApiNinja.Response) -> ()){
        
         let ApiUrl=URL(string:"https://api.calorieninjas.com/v1/nutrition?query=\(searchQuery)".replacingOccurrences(of: " ", with: "%20"))
         print("Making Request:")
@@ -51,18 +52,18 @@ class ApiCalorieNinja{
             //creating a task
             let threadFetch = URLSession.shared.dataTask(with: req){ (responseData, response, responseError) in
                 print("Making Api Call")
-                let responseData = try! JSONDecoder().decode(Response.self, from: responseData!)
+                let responseData = try! JSONDecoder().decode(ApiNinja.Response.self, from: responseData!)
                 DispatchQueue.main.async {
                                         isCompleted(responseData)
                                         print("Api Call returned" + "\(responseData)"  )
-                    GoalCalory.global.TotalFoodCalorie = responseData.items.map{$0.calories}.reduce(0,+)
-                                    }
+                   
+            
+                                    
+                }
             }
             threadFetch.resume()
             
         }
-        
-        
     }
 }
 

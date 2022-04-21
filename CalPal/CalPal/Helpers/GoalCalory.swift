@@ -9,8 +9,5 @@ import Foundation
 //helper for Global Goal.
 final class GoalCalory:ObservableObject{
     static let global=GoalCalory()
-    
     var goalCal=0
-    var TotalFoodCalorie=0.0
-    
 }
