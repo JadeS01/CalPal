@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @Environment (\.managedObjectContext) var managedObjectContext2
-    @Environment (\.dismiss) var dismiss
-    @State private var goalCal = 0
-    //making observed object in order for us to set globalVariable further
-    @ObservedObject var globalObject=GoalCalory.global
+    @EnvironmentObject private var goal: Goal
+    
     private let defaults = UserDefaults.standard
     
     var body: some View {
         VStack(alignment: .center){
-            Text("Current Goal: \(goalCal) calories").font(.headline)
+            Text("Current Goal: \(goal.goal) calories").font(.headline)
             Image(systemName: "person") 
                 .foregroundColor(.green)
                 .imageScale(.large).padding()
             Text("Set your daily calorie goal\n\n")
             VStack{
-                TextField("####", value: $goalCal, format: .number)
+                TextField("####", value: $goal.goal, format: .number)
                     .textFieldStyle(.roundedBorder)
                     .keyboardType(.decimalPad)
                     .padding()
@@ -31,18 +28,17 @@ struct ProfileView: View {
             HStack {
                 Spacer()
                 Button("Confirm"){
-                    DataController2().addGoal(goalCal: goalCal, context: managedObjectContext2)
-                    print(GoalCalory.global.goalCal)
+                    print(goal.goal)
                     self.save()
                     self.load()
                 }
                 Spacer()
                 
             }
-            if goalCal < 1200 {
+            if goal.goal < 1200 {
                 Text("\n*Please take caution with your health.")
             }
-            else if goalCal > 5000 {
+            else if goal.goal > 5000 {
                 Text("\n*Please take caution with your health.")
             }
         }.navigationTitle("Profile")
@@ -50,12 +46,12 @@ struct ProfileView: View {
     }
     
     func save() {
-        defaults.set(goalCal, forKey: "goalCal")
+        defaults.set(goal.goal, forKey: "goalCal")
     }
     
     func load() {
         let savedGoal = defaults.integer(forKey: "goalCal")
-        goalCal = savedGoal
+        goal.goal = savedGoal
     }
    
 

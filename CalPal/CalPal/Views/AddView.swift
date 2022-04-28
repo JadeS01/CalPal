@@ -65,7 +65,7 @@ struct AddView: View {
                             response = [dataResponse]
                             calories = dataResponse.items.map{$0.calories}.reduce(0,+)
                         
-                            DataController().addFood(name: name, calories:     Double(Int(calories)), category: category, context: managedObjectContext)
+                            DataController().addFood(name: name, calories: Int(calories), category: category, context: managedObjectContext)
                         dismiss()
                     }
                     Spacer()

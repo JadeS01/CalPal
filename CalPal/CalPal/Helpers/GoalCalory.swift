@@ -7,7 +7,15 @@
 
 import Foundation
 //helper for Global Goal.
-final class GoalCalory:ObservableObject{
-    static let global=GoalCalory()
-    var goalCal=0
+//final class GoalCalory:ObservableObject{
+//    static let global=GoalCalory()
+//    var goalCal="0"
+//
+//}
+
+class Goal: ObservableObject {
+    @Published var goal: Int
+    init(goal: Int){
+        self.goal = goal
+    }
 }

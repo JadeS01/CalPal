@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeViewController: View {
     
     @State var showMenu = false
-
+    @EnvironmentObject private var goal: Goal
+    
 
     var body: some View {
         
@@ -65,34 +66,35 @@ struct MainView: View {
     @Binding var showMenu: Bool
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
+    @EnvironmentObject private var goal: Goal
+    @AppStorage("goalCal") private var goalCal = 0
     
-    @State var isRemOn: Bool = false
     
-
     var body: some View {
         VStack(alignment: .center){
             Text(greeting())
             Text("This is the home view!")
             Text("Today's Calories: \(todayCalories())")
-           
+            Text("Remaining Calories: \(remCal())")
+            Text("Goal: \(goalCalories())")
             Spacer()
-            Button("Water reminder"){
-                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-                    if success {
-                        print("k")
-                    } else if let error = error {
-                        print(error.localizedDescription)
-                    }
-                }
-            }
-            Button("hi"){
-                waterReminder()
-            }
-            
-            Toggle(isOn: $isRemOn){
-                Text("water")
-            }
+           
         }
+    }
+    
+    private func goalCalories() -> Int {
+        if goal.goal > 1200 {
+            goalCal = goal.goal
+            return goalCal
+        }
+        return goalCal
+    }
+    
+    private func remCal() -> Int {
+        let goal = goalCalories()
+        let today = Int(todayCalories())
+        let rem = goal - today
+        return rem
     }
     
     private func todayCalories() -> Int32 {
@@ -104,6 +106,7 @@ struct MainView: View {
         }
         return todayCalories
     }
+    
 }
 
 struct HomeViewController_Previews: PreviewProvider {

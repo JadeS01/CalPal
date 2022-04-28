@@ -11,7 +11,6 @@
 		9694DBCB27FD4D1000A79E23 /* CalorieNinjasApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9694DBCA27FD4D1000A79E23 /* CalorieNinjasApi.swift */; };
 		D00463E727FFDCDE00CD944B /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = D00463E627FFDCDE00CD944B /* SwiftUICharts */; };
 		D00463EA27FFDF8000CD944B /* FoodModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D00463E827FFDF8000CD944B /* FoodModel.xcdatamodeld */; };
-		D00FE2C92808C96600E7E4F7 /* GoalModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D00FE2C72808C96600E7E4F7 /* GoalModel.xcdatamodeld */; };
 		D049CE0B27F622500080E226 /* CalPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049CE0A27F622500080E226 /* CalPalApp.swift */; };
 		D049CE0F27F622510080E226 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D049CE0E27F622510080E226 /* Assets.xcassets */; };
 		D049CE1227F622510080E226 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D049CE1127F622510080E226 /* Preview Assets.xcassets */; };
@@ -30,7 +29,6 @@
 		9694DBC827FD440400A79E23 /* GoalCalory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalory.swift; sourceTree = "<group>"; };
 		9694DBCA27FD4D1000A79E23 /* CalorieNinjasApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieNinjasApi.swift; sourceTree = "<group>"; };
 		D00463E927FFDF8000CD944B /* FoodModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodModel.xcdatamodel; sourceTree = "<group>"; };
-		D00FE2C82808C96600E7E4F7 /* GoalModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoalModel.xcdatamodel; sourceTree = "<group>"; };
 		D049CE0727F622500080E226 /* CalPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D049CE0A27F622500080E226 /* CalPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalPalApp.swift; sourceTree = "<group>"; };
 		D049CE0E27F622510080E226 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,7 +98,6 @@
 			children = (
 				D00463E827FFDF8000CD944B /* FoodModel.xcdatamodeld */,
 				D0B2596127F637A400026898 /* DataController.swift */,
-				D00FE2C72808C96600E7E4F7 /* GoalModel.xcdatamodeld */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -205,7 +202,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D00FE2C92808C96600E7E4F7 /* GoalModel.xcdatamodeld in Sources */,
 				D049CE1B27F623010080E226 /* MenuView.swift in Sources */,
 				D0B2596627F656C800026898 /* DateForm.swift in Sources */,
 				D00463EA27FFDF8000CD944B /* FoodModel.xcdatamodeld in Sources */,
@@ -447,16 +443,6 @@
 			);
 			currentVersion = D00463E927FFDF8000CD944B /* FoodModel.xcdatamodel */;
 			path = FoodModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		D00FE2C72808C96600E7E4F7 /* GoalModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				D00FE2C82808C96600E7E4F7 /* GoalModel.xcdatamodel */,
-			);
-			currentVersion = D00FE2C82808C96600E7E4F7 /* GoalModel.xcdatamodel */;
-			path = GoalModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
