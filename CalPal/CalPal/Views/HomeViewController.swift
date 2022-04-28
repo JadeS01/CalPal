@@ -69,16 +69,29 @@ struct MainView: View {
     @EnvironmentObject private var goal: Goal
     @AppStorage("goalCal") private var goalCal = 0
     
-    
+    private let gradient = AngularGradient(
+        gradient: Gradient(colors: [Color.green, .white]),
+        center: .center,
+        startAngle: .degrees(270),
+        endAngle: .degrees(0))
+
     var body: some View {
         VStack(alignment: .center){
-            Text(greeting())
-            Text("This is the home view!")
-            Text("Today's Calories: \(todayCalories())")
-            Text("Remaining Calories: \(remCal())")
-            Text("Goal: \(goalCalories())")
-            Spacer()
-           
+            Text("\(greeting()) 😃")
+            ZStack {
+                Circle()
+                    .stroke(Color.gray, lineWidth: 15)
+                    .frame(width: 200, height: 200)
+                Circle()
+                    .trim(from: 0.0, to: (Double(todayCalories()) / Double(goalCalories())))
+                    .stroke(gradient, lineWidth: 15)
+                    .frame(width: 200, height: 200)
+                    .rotationEffect(Angle(degrees: -90))
+                Text("\(Int((Double(todayCalories()) / Double(goalCalories()))*100))%")
+                        .font(.custom("HelveticaNeue", size: 20.0))
+            }
+            Text("You have \(remCal()) calories remaining ")
+            
         }
     }
     
@@ -90,18 +103,25 @@ struct MainView: View {
         return goalCal
     }
     
+    private func perCal() -> Int {
+        let goal = goalCalories()
+        let today = todayCalories()
+        let rem = today / goal
+        return rem
+    }
+    
     private func remCal() -> Int {
         let goal = goalCalories()
-        let today = Int(todayCalories())
+        let today = todayCalories()
         let rem = goal - today
         return rem
     }
     
-    private func todayCalories() -> Int32 {
-        var todayCalories: Int32 = 0
+    private func todayCalories() -> Int {
+        var todayCalories: Int = 0
         for item in food {
             if Calendar.current.isDateInToday(item.date!){
-                todayCalories += Int32(item.calories)
+                todayCalories += Int(item.calories)
             }
         }
         return todayCalories
