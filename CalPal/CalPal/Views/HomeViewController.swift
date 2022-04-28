@@ -31,8 +31,9 @@ struct HomeViewController: View {
                 ZStack(alignment: .trailing){
                     MainView(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
-                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
+//                        .offset(x: self.showMenu ? geometry.size.width/2 : 0)
                         .disabled(self.showMenu ? true : false)
+                        .blur(radius: self.showMenu ? 40 : 0)
     //                MainView()
     //                    .frame(width: geometry.size.width, height: geometry.size.height)
                     if self.showMenu {
@@ -60,9 +61,6 @@ struct HomeViewController: View {
 }
 
 struct MainView: View {
-    /** TODO: Create a function that subtracts the day's total calories from the goal calories and
-            display whether user has yet to meet their goal or has gone over it. LogView has the
-            function showing the day's total calories*/
     @Binding var showMenu: Bool
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
@@ -89,7 +87,7 @@ struct MainView: View {
                     .rotationEffect(Angle(degrees: -90))
                 Text("\(Int((Double(todayCalories()) / Double(goalCalories()))*100))%")
                         .font(.custom("HelveticaNeue", size: 20.0))
-            }
+            }.padding(40)
             Text("You have \(remCal()) calories remaining ")
             
         }
@@ -101,13 +99,6 @@ struct MainView: View {
             return goalCal
         }
         return goalCal
-    }
-    
-    private func perCal() -> Int {
-        let goal = goalCalories()
-        let today = todayCalories()
-        let rem = today / goal
-        return rem
     }
     
     private func remCal() -> Int {

@@ -9,10 +9,6 @@ import SwiftUI
 
 struct MenuView: View {
     
-//    @State var profileView: Bool
-//    @State var logView: Bool
-//    @State var statsView: Bool
-    
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -51,7 +47,8 @@ struct MenuView: View {
             }.padding(.top, 30)
             // Spacer() pushes up menu items
             Spacer()
-        }.padding().frame(maxWidth: .infinity, alignment: .leading).background(.yellow)
+        }.padding().frame(maxWidth: .infinity, alignment: .leading)
+            .background(.white)
 //            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
 //                        .edgesIgnoringSafeArea(.all)
         
