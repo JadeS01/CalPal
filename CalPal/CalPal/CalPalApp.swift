@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 @main
 struct CalPalApp: App {
     @StateObject private var dataController = DataController()

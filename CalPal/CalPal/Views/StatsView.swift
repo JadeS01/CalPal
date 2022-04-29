@@ -16,6 +16,9 @@ struct StatsView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
     @State private var select = "Today"
     @State var categories = []
+    
+    let chartStyle = ChartStyle(backgroundColor: Color.black, accentColor: Colors.OrangeStart, secondGradientColor: Colors.OrangeEnd, textColor: Color.white, legendTextColor: Color.white, dropShadowColor: .green )
+    
 
  
     var body: some View {
@@ -29,19 +32,17 @@ struct StatsView: View {
                 Text("Today").tag("Today")
                 Text("All Time").tag("All Time")
             }.pickerStyle(.segmented)
-            Text(select)
-            
-//            MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: "Title")
             
             if select == "All Time" {
                 PieChartView(data: pieChart(), title: "Meals of the Day", legend: "Category", form: ChartForm.large)
                 
             } else {
-                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", legend: "Legendary", form: ChartForm.extraLarge)
-                
+                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", legend: "Legend", form: ChartForm.extraLarge)
+                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", style: chartStyle, form: ChartForm.extraLarge)
             }
             
             
+            Text("History").padding(20)
             List{
                 ForEach(allFood()) { food in
                         HStack {

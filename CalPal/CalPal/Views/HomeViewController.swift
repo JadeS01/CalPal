@@ -85,8 +85,6 @@ struct MainView: View {
                     .stroke(gradient, lineWidth: 15)
                     .frame(width: 200, height: 200)
                     .rotationEffect(Angle(degrees: -90))
-                Text("\(Int((Double(todayCalories()) / Double(goalCalories()))*100))%")
-                        .font(.custom("HelveticaNeue", size: 20.0))
             }.padding(40)
             Text("You have \(remCal()) calories remaining ")
             

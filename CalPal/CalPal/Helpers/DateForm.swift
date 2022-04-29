@@ -37,8 +37,7 @@ func greeting() -> String{
     }
     else if hourInt >= 16 && hourInt <= 20 {
         greeting = "Good Evening"
-    }
-    else if hourInt >= 20 && hourInt <= 3 {
+    }else{
         greeting = "Good Night"
     }
     return greeting
