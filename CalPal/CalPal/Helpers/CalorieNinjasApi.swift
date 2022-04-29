@@ -55,7 +55,7 @@ class ApiCalorieNinja{
                 let responseData = try! JSONDecoder().decode(ApiNinja.Response.self, from: responseData!)
                 DispatchQueue.main.async {
                                         isCompleted(responseData)
-                                        print("Api Call returned" + "\(responseData)"  )
+//                                        print("Api Call returned" + "\(responseData)"  )
                    
             
                                     

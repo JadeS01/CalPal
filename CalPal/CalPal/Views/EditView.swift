@@ -11,13 +11,13 @@ struct EditView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.dismiss) var dismiss
     
-    private var food: FetchedResults<Food>.Element
+    var food: FetchedResults<Food>.Element
     
     @State private var name = ""
     @State private var calories = 0
     @State private var category = ""
-    private var categories = ["snack", "breakfast", "lunch", "dinner"]
-    
+    @State private var categories = ["snack", "breakfast", "lunch", "dinner"]
+       
     var body: some View {
         Form {
             Section {

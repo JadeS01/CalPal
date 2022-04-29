@@ -17,6 +17,7 @@ struct LogView: View {
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
     
     @State private var showAddView = false
+    var i = 0;
     
     var body: some View {
         NavigationView{
@@ -24,9 +25,9 @@ struct LogView: View {
                 Text("\(Int(todayCalories())) total calorie(s) today")
                     .foregroundColor(.gray)
                     .padding(.horizontal)
-                List{
+                List{     
                     ForEach(todayFood()) { food in
-                        NavigationLink(destination: Text("\(food.calories)")){
+                        NavigationLink(destination: EditView(food:  food.self)){
                             HStack {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(food.name!)
@@ -41,18 +42,6 @@ struct LogView: View {
                                 }
                             }
                         }
-//                        NavigationLink(destination: EditView(food: food)){
-//                            HStack {
-//                                VStack(alignment: .leading, spacing: 6) {
-//                                    Text(food.name!)
-//                                        .bold()
-//                                    Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
-//                                }
-//                                Spacer()
-//                                Text(calcDate(date:food.date!))
-//                                    .foregroundColor(.gray).italic()
-//                            }
-//                        }
                     }
                     .onDelete(perform: deleteFood)
                 }
@@ -99,6 +88,7 @@ struct LogView: View {
         for item in food {
             if Calendar.current.isDateInToday(item.date!){
                 todayCalories += Int32(item.calories)
+            
             }
         }
         return todayCalories

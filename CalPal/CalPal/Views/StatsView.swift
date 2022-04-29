@@ -31,20 +31,19 @@ struct StatsView: View {
             Picker("Stats", selection: $select){
                 Text("Today").tag("Today")
                 Text("All Time").tag("All Time")
-            }.pickerStyle(.segmented)
+            }.pickerStyle(.segmented).padding()
             
             if select == "All Time" {
                 PieChartView(data: pieChart(), title: "Meals of the Day", legend: "Category", form: ChartForm.large)
                 
             } else {
                 BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", legend: "Legend", form: ChartForm.extraLarge)
-                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", style: chartStyle, form: ChartForm.extraLarge)
             }
             
             
             Text("History").padding(20)
             List{
-                ForEach(allFood()) { food in
+                ForEach(food) { food in
                         HStack {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(food.name!)
@@ -95,15 +94,6 @@ struct StatsView: View {
         }
         return foods.reversed()
     }
-    
-    private func allFood() -> [Food] {
-        var allFood: [Food] = []
-        for item in food {
-            allFood.append(item)
-        }
-        return allFood
-    }
- 
 }
 
 struct StatsView_Previews: PreviewProvider {
