@@ -57,8 +57,8 @@ struct LogView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading){
-                    EditButton()
-            }
+                        EditButton()
+                }
         }
         .sheet(isPresented: $showAddView){
             AddView()

@@ -55,7 +55,10 @@ struct HomeViewController: View {
                     }
             ))
             .navigationBarItems(leading: (
-                Text("LOGO")))
+                Image(systemName: "house")
+                    .foregroundColor(.green)
+                    .imageScale(.large)
+                ))
         }
     }
 }

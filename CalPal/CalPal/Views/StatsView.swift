@@ -17,27 +17,23 @@ struct StatsView: View {
     @State private var select = "Today"
     @State var categories = []
     
-    let chartStyle = ChartStyle(backgroundColor: Color.black, accentColor: Colors.OrangeStart, secondGradientColor: Colors.OrangeEnd, textColor: Color.white, legendTextColor: Color.white, dropShadowColor: .green )
+    let chartStyle = ChartStyle(backgroundColor: Color.white, accentColor: Colors.GradientNeonBlue, secondGradientColor: .green, textColor: .black, legendTextColor: .black, dropShadowColor: .green )
     
 
  
     var body: some View {
-        /** TODO: Allow options to display different statistics
-                ex1: pie chart of categories
-                ex2: histogram of week's categories
-                ex3: histogram of hourly/day categories
-         LogView demonstrates fetching data from db*/
         VStack{
             Picker("Stats", selection: $select){
                 Text("Today").tag("Today")
                 Text("All Time").tag("All Time")
             }.pickerStyle(.segmented).padding()
             
+            
             if select == "All Time" {
-                PieChartView(data: pieChart(), title: "Meals of the Day", legend: "Category", form: ChartForm.large)
+                BarChartView(data: ChartData(values: pieChart()), title: "Meals of the Day", style: chartStyle, form: ChartForm.extraLarge)
                 
             } else {
-                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", legend: "Legend", form: ChartForm.extraLarge)
+                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", style: chartStyle, form: ChartForm.extraLarge)
             }
             
             
@@ -65,7 +61,7 @@ struct StatsView: View {
  
     }
     
-    private func pieChart() -> [Double]{
+    private func pieChart() -> [(String, Double)]{
         var breakfast = 0.0
         var lunch = 0.0
         var snack = 0.0
@@ -82,7 +78,7 @@ struct StatsView: View {
                 snack += Double(item.calories)
             }
         }
-        return [breakfast, lunch, snack, dinner]
+        return [("Breakfast", breakfast), ("Lunch", lunch), ("Snack", snack), ("Dinner", dinner)]
     }
     
     private func barChart() -> [(String, Double)] {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,8 +48,13 @@ struct MenuView: View {
             }.padding(.top, 30)
             // Spacer() pushes up menu items
             Spacer()
+            Picker("Theme", selection: $isDarkMode){
+                Text("Light").tag(false)
+                Text("Dark").tag(true)
+            }.pickerStyle(.segmented).padding()
+            
         }.padding().frame(maxWidth: .infinity, alignment: .leading)
-            .background(.white)
+//            .background(.white)
 //            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
 //                        .edgesIgnoringSafeArea(.all)
         
