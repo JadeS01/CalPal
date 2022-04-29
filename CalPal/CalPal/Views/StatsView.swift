@@ -15,6 +15,7 @@ struct StatsView: View {
     // gets the most recent dates
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var food: FetchedResults<Food>
     @State private var select = "Today"
+    @State var categories = []
 
  
     var body: some View {
@@ -30,24 +31,24 @@ struct StatsView: View {
             }.pickerStyle(.segmented)
             Text(select)
             
-            MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: "Title")
+//            MultiLineChartView(data: [([8,32,11,23,40,28], GradientColors.green), ([90,99,78,111,70,60,77], GradientColors.purple), ([34,56,72,38,43,100,50], GradientColors.orngPink)], title: "Title")
             
-            if select == "Today" {
-                Text("today")
-                PieChartView(data: pieChart(), title: "Title1", legend: "Legendary") // legend is optional
+            if select == "All Time" {
+                PieChartView(data: pieChart(), title: "Meals of the Day", legend: "Category", form: ChartForm.large)
+                
             } else {
-                Text("all time")
-                BarChartView(data: ChartData(points: [8,23,54,32,12,37,7,23,43]), title: "Title", legend: "Legendary") // legend is optional
+                BarChartView(data: ChartData(values: barChart()), title: "Consumed Today", legend: "Legendary", form: ChartForm.extraLarge)
+                
             }
+            
             
             List{
                 ForEach(allFood()) { food in
-                    NavigationLink(destination: Text("\(food.calories)")){
                         HStack {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text(food.name!)
                                     .bold()
-                                Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
+                                Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.green)
                             }
                             Spacer()
                             VStack(alignment: .leading, spacing: 6) {
@@ -56,7 +57,7 @@ struct StatsView: View {
                                     .foregroundColor(.gray).italic()
                             }
                         }
-                    }
+                    
                 }
             }.listStyle(.plain)
             
@@ -81,18 +82,17 @@ struct StatsView: View {
                 snack += Double(item.calories)
             }
         }
-        print(breakfast, lunch, snack, dinner)
         return [breakfast, lunch, snack, dinner]
     }
-
-    private func todayFood() -> [Food] {
-        var todayFood: [Food] = []
+    
+    private func barChart() -> [(String, Double)] {
+        var foods:[(String, Double)] = []
         for item in food {
             if Calendar.current.isDateInToday(item.date!){
-                todayFood.append(item)
+                foods.append((item.name!, Double(item.calories)))
             }
         }
-        return todayFood
+        return foods.reversed()
     }
     
     private func allFood() -> [Food] {

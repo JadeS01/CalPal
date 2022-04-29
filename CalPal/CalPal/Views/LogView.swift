@@ -31,7 +31,7 @@ struct LogView: View {
                                 VStack(alignment: .leading, spacing: 6) {
                                     Text(food.name!)
                                         .bold()
-                                    Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.red)
+                                    Text("\(Int(food.calories))") + Text(" calorie(s)").foregroundColor(.green)
                                 }
                                 Spacer()
                                 VStack(alignment: .leading, spacing: 6) {

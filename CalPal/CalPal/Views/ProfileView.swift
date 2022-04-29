@@ -25,21 +25,22 @@ struct ProfileView: View {
                     .keyboardType(.decimalPad)
                     .padding()
             }
-            HStack {
-                Spacer()
-                Button("Confirm"){
-                    print(goal.goal)
-                    self.save()
-                    self.load()
-                }
-                Spacer()
-                
-            }
             if goal.goal < 1200 {
                 Text("\n*Please take caution with your health.")
+                
             }
             else if goal.goal > 5000 {
                 Text("\n*Please take caution with your health.")
+            }else{
+                HStack {
+                    Spacer()
+                    Button("Confirm"){
+                        self.save()
+                        self.load()
+                    }
+                    Spacer()
+                    
+                }
             }
         }.navigationTitle("Profile")
             .onAppear(perform: load)
