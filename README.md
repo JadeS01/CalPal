@@ -7,7 +7,7 @@ Must have features:
 ```
 * Calulate the amount of calories consumed throughout a day: utilize an API such as https://calorieninjas.com/api.
 * Allow users to set calorie goals and calculate if they've reached that goal or went under/over it.
-* Display a chart of a given week's daily calories.
+* Display a chart of the current day's calories.
 * Allow users to log their food/calories under breakfast, lunch, dinner, or snack categories.
 ```
 
