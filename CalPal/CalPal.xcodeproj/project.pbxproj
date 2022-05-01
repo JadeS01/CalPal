@@ -19,11 +19,23 @@
 		D049CE1F27F623390080E226 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049CE1E27F623390080E226 /* LogView.swift */; };
 		D049CE2127F623520080E226 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049CE2027F623520080E226 /* ProfileView.swift */; };
 		D049CE2327F623730080E226 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D049CE2227F623730080E226 /* StatsView.swift */; };
+		D06D3677281DA3AC0038C851 /* CalPalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D3676281DA3AC0038C851 /* CalPalUITests.swift */; };
+		D06D3679281DA3AC0038C851 /* CalPalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D3678281DA3AC0038C851 /* CalPalUITestsLaunchTests.swift */; };
 		D0B2596227F637A400026898 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596127F637A400026898 /* DataController.swift */; };
 		D0B2596627F656C800026898 /* DateForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596527F656C800026898 /* DateForm.swift */; };
 		D0B2596A27F6644900026898 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596927F6644900026898 /* EditView.swift */; };
 		D0B2596C27F8C7D800026898 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B2596B27F8C7D800026898 /* AddView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D06D367A281DA3AC0038C851 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D049CDFF27F622500080E226 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D049CE0627F622500080E226;
+			remoteInfo = CalPal;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9694DBC827FD440400A79E23 /* GoalCalory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCalory.swift; sourceTree = "<group>"; };
@@ -38,6 +50,9 @@
 		D049CE1E27F623390080E226 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		D049CE2027F623520080E226 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		D049CE2227F623730080E226 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		D06D3674281DA3AC0038C851 /* CalPalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalPalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D06D3676281DA3AC0038C851 /* CalPalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalPalUITests.swift; sourceTree = "<group>"; };
+		D06D3678281DA3AC0038C851 /* CalPalUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalPalUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D0B2596127F637A400026898 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		D0B2596527F656C800026898 /* DateForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateForm.swift; sourceTree = "<group>"; };
 		D0B2596927F6644900026898 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
@@ -53,6 +68,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D06D3671281DA3AC0038C851 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -60,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				D049CE0927F622500080E226 /* CalPal */,
+				D06D3675281DA3AC0038C851 /* CalPalUITests */,
 				D049CE0827F622500080E226 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				D049CE0727F622500080E226 /* CalPal.app */,
+				D06D3674281DA3AC0038C851 /* CalPalUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +115,15 @@
 				D049CE1127F622510080E226 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D06D3675281DA3AC0038C851 /* CalPalUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D06D3676281DA3AC0038C851 /* CalPalUITests.swift */,
+				D06D3678281DA3AC0038C851 /* CalPalUITestsLaunchTests.swift */,
+			);
+			path = CalPalUITests;
 			sourceTree = "<group>";
 		};
 		D0B2595D27F6312A00026898 /* DataModel */ = {
@@ -149,6 +182,24 @@
 			productReference = D049CE0727F622500080E226 /* CalPal.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D06D3673281DA3AC0038C851 /* CalPalUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D06D367E281DA3AC0038C851 /* Build configuration list for PBXNativeTarget "CalPalUITests" */;
+			buildPhases = (
+				D06D3670281DA3AC0038C851 /* Sources */,
+				D06D3671281DA3AC0038C851 /* Frameworks */,
+				D06D3672281DA3AC0038C851 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D06D367B281DA3AC0038C851 /* PBXTargetDependency */,
+			);
+			name = CalPalUITests;
+			productName = CalPalUITests;
+			productReference = D06D3674281DA3AC0038C851 /* CalPalUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -161,6 +212,10 @@
 				TargetAttributes = {
 					D049CE0627F622500080E226 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					D06D3673281DA3AC0038C851 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = D049CE0627F622500080E226;
 					};
 				};
 			};
@@ -181,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				D049CE0627F622500080E226 /* CalPal */,
+				D06D3673281DA3AC0038C851 /* CalPalUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +248,13 @@
 			files = (
 				D049CE1227F622510080E226 /* Preview Assets.xcassets in Resources */,
 				D049CE0F27F622510080E226 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D06D3672281DA3AC0038C851 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +281,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D06D3670281DA3AC0038C851 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D06D3677281DA3AC0038C851 /* CalPalUITests.swift in Sources */,
+				D06D3679281DA3AC0038C851 /* CalPalUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D06D367B281DA3AC0038C851 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D049CE0627F622500080E226 /* CalPal */;
+			targetProxy = D06D367A281DA3AC0038C851 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D049CE1327F622510080E226 /* Debug */ = {
@@ -393,6 +473,38 @@
 			};
 			name = Release;
 		};
+		D06D367C281DA3AC0038C851 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sfsu.edu.CalPalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CalPal;
+			};
+			name = Debug;
+		};
+		D06D367D281DA3AC0038C851 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = sfsu.edu.CalPalUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CalPal;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -410,6 +522,15 @@
 			buildConfigurations = (
 				D049CE1627F622510080E226 /* Debug */,
 				D049CE1727F622510080E226 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D06D367E281DA3AC0038C851 /* Build configuration list for PBXNativeTarget "CalPalUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D06D367C281DA3AC0038C851 /* Debug */,
+				D06D367D281DA3AC0038C851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

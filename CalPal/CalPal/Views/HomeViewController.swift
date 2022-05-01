@@ -52,8 +52,9 @@ struct HomeViewController: View {
                 }) {
                     Image(systemName: "line.horizontal.3")
                         .imageScale(.large)
+                        
                     }
-            ))
+            )).accessibility(identifier: "showMenuButton")
             .navigationBarItems(leading: (
                 Image(systemName: "house")
                     .foregroundColor(.green)
@@ -89,7 +90,7 @@ struct MainView: View {
                     .frame(width: 200, height: 200)
                     .rotationEffect(Angle(degrees: -90))
             }.padding(40)
-            Text("You have \(remCal()) calories remaining ")
+            Text("You have \(remCal()) calorie(s) remaining ")
             
         }
     }
