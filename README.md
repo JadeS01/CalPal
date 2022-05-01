@@ -27,7 +27,11 @@ Jade:
 * Set up the UI depicted in the wireframes including hamburger menu. (3-4 hours)
 * Pass data, such as a desired calorie goal and histogram, between view controllers. (3-4 hours)
 ```
-
+Arslan:
+```
+* Work with api (function) + Debugging  (2-3 hours)
+* Global Variables, passing data + calculating it from viewcontroller + making api call and showing the calories on the screen (3 hours)
+```
 Basic wire-frames for the main feature:
 
 ![image](https://user-images.githubusercontent.com/78764175/159135030-9b685cbc-f0d6-46b9-a73a-63847583e600.png)
